@@ -56,6 +56,11 @@ const Poll = (props) => {
       //setQuestionArray(newStateArray[0]);
     });
   }, []);
+
+
+  console.log(props.location.pathname);
+
+
   return (
     <div className="question">
       <h3>{objectArray[0]}</h3>
@@ -70,6 +75,10 @@ const Poll = (props) => {
 
       <button onClick={handleClick}>vote</button>
       <Result result={objectArray[1] ? objectArray[1] : { yes: 0, no: 0 }} />
+
+      <p>http://localhost:3000{props.location.pathname}</p>
+
+
     </div>
   );
 };

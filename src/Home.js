@@ -37,7 +37,7 @@ const Home = () => {
   // Function that handles changes in input elements on form
 
   return (
-    <div>
+    <div className="wrapper">
       <header>
         <h1>Voting App</h1>
       </header>
@@ -47,20 +47,20 @@ const Home = () => {
           libero expedita tenetur commodi voluptates repellat facilis provident
           odio ea necessitatibus!
         </p>
+        <form action="submit" onSubmit={handleSubmit}>
+          <label htmlFor="userquestionInput"></label>
+          <input
+            type="text"
+            name="userquestionInput"
+            id="userquestionInput"
+            onChange={handleInputChange}
+          />
+          <button type="submit">Create Poll</button>
+        </form>
+        <Link to={`${pollID}`}>
+          <button>Start Poll</button>
+        </Link>
       </main>
-      <form action="submit" onSubmit={handleSubmit}>
-        <label htmlFor="userquestionInput"></label>
-        <input
-          type="text"
-          name="userquestionInput"
-          id="userquestionInput"
-          onChange={handleInputChange}
-        />
-        <button type="submit">Create Poll</button>
-      </form>
-      <Link to={`${pollID}`}>
-        <button>Start the poll</button>
-      </Link>
     </div>
   );
 };

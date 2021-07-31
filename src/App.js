@@ -16,13 +16,10 @@ import Poll from './Poll';
   return (
     <Router>
     <div className="App">
-      <div className="wrapper">
 
       <Route exact path="/" component={ Home }/>
 
       <Route exact path="/:pollID" component={Poll}/>
-
-      </div>
 
       <footer>
           <p>Created at <a href="http://junocollege.com" target="_blank">Juno College</a> by Hongjian Huang, Richard Gayle, and Sherry Truong</p>

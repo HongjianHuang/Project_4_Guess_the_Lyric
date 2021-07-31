@@ -224,6 +224,8 @@ html {
 
 /* END OF SET UP CSS */
 
+/* General and Home.js Styles */
+
 
 * {
   margin: 0;
@@ -236,11 +238,8 @@ html {
 
 .App {
   text-align: center;
-}
-
-body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #32313b;
+  background: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -252,11 +251,6 @@ body {
   width: 90%;
   margin: 0 auto;
 }
-/* 
-.container {
-  padding: 5vw 0;
-  min-height: calc(100vh - 44px);
-} */
 
 a {
   text-decoration: none;
@@ -264,14 +258,19 @@ a {
 }
 
 p {
-  color: #fff;
+  color: #000;
 }
 
 h1 {
   color: #39b1c6;
 }
 
+header {
+  padding-top: 100px;
+}
+
 form {
+  margin-top: 75px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -285,6 +284,7 @@ input[type="text"] {
 
 button {
   width: 25%;
+  margin: 20px 0px;
 }
 
 button[type="submit"] {
@@ -292,9 +292,27 @@ button[type="submit"] {
   align-self: center;
 }
 
-
 footer {
   padding: 10px 0;
   background: #25242c;
+}
+
+footer p {
   color: #fff;
 }
+
+/* Poll.js Styles */
+
+h2 {
+  padding: 15px 0;
+  color: #fff;
+}
+
+h3 {
+  margin-top: 50px;
+}
+
+.questionBanner {
+  background-color: #cc3535;
+}
+

@@ -221,3 +221,80 @@ html {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+/* END OF SET UP CSS */
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 125%;
+}
+
+.App {
+  text-align: center;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #32313b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+/* 
+.container {
+  padding: 5vw 0;
+  min-height: calc(100vh - 44px);
+} */
+
+a {
+  text-decoration: none;
+  color: #41b85b;
+}
+
+p {
+  color: #fff;
+}
+
+h1 {
+  color: #39b1c6;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+input[type="text"] {
+  width: 50%;
+  align-self: center;
+}
+
+button {
+  width: 25%;
+}
+
+button[type="submit"] {
+  width: 25%;
+  align-self: center;
+}
+
+
+footer {
+  padding: 10px 0;
+  background: #25242c;
+  color: #fff;
+}

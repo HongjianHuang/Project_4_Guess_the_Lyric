@@ -9,6 +9,7 @@ const Result = (props) => {
       <p>Yes: {result.yes}</p>
       <p>No: {result.no}</p>
       <p>Total Votes: {total}</p>
+
     </div>
   );
 };

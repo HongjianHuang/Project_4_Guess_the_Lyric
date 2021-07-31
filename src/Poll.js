@@ -6,13 +6,20 @@ const Poll = (props) => {
   const [objectArray, setObjectArray] = useState([]);
   const [vote, setVote] = useState("");
   const [pollObject, setPollObject] = useState({});
+
   const onChangeValue = (e) => {
     setVote(e.target.value);
   };
+
   const handleClick = () => {
-    console.log(vote);
-    changeFirebaseValue(vote);
+    if (vote === "yes" || vote === "no") {
+      console.log(vote);
+      changeFirebaseValue(vote);
+    } else {
+      alert("Please vote!")
+    }
   };
+
   const changeFirebaseValue = (pollResult) => {
     const dbRef = firebase.database().ref(pollID);
     console.log(dbRef);
@@ -57,26 +64,29 @@ const Poll = (props) => {
     });
   }, []);
 
-
-  console.log(props.location.pathname);
-
-
   return (
     <div className="question">
       <h3>{objectArray[0]}</h3>
-      <div className="vote" onChange={onChangeValue}>
+      <form className="vote" onChange={onChangeValue}>
         <label>
-          <input type="radio" value="yes" name="vote" /> Yes
+          <input type="radio" value="yes" name="vote"/> Yes
         </label>
         <label>
           <input type="radio" value="no" name="vote" /> No
         </label>
-      </div>
+      </form>
 
       <button onClick={handleClick}>vote</button>
+
+      {/* <Route
+        path="/result"
+        render={() => <About who="Paul" what="actually super lovely" />}
+      /> */}
+
+
       <Result result={objectArray[1] ? objectArray[1] : { yes: 0, no: 0 }} />
 
-      <p>http://localhost:3000{props.location.pathname}</p>
+      <p>Share poll URL: http://localhost:3000{props.location.pathname}</p>
 
 
     </div>

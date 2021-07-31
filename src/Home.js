@@ -6,6 +6,7 @@ const Home = () => {
   const [questionInput, setQuestionInput] = useState("");
   const [pollID, setPollID] = useState("");
   //const [questionArray, setQuestionArray] = useState([]);
+  //const [ buttonShow, setButtonShow ] = useState(false);
   const poll = { yes: 0, no: 0 };
 
   const handleInputChange = (e) => {
@@ -25,9 +26,12 @@ const Home = () => {
       setQuestionInput("");
       setPollID(pollID);
     }
-    // } else {
-    //   alert("Enter a valid response");
-    // }
+    else {
+      alert("Enter a valid response");
+    }
+    // setButtonShow(true);
+    // console.log(buttonShow)
+
   };
 
   // Function that handles changes in input elements on form
@@ -53,10 +57,10 @@ const Home = () => {
           onChange={handleInputChange}
         />
         <button type="submit">Create Poll</button>
-        <Link to={`${pollID}`}>
-          <button>Start the poll</button>
-        </Link>
       </form>
+      <Link to={`${pollID}`}>
+        <button>Start the poll</button>
+      </Link>
     </div>
   );
 };

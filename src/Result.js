@@ -14,3 +14,11 @@ const Result = (props) => {
   );
 };
 export default Result;
+
+
+// {
+//   !showResult ?
+          
+//           :
+//     <Result result={objectArray[1] ? objectArray[1] : { yes: 0, no: 0 }} />
+// }

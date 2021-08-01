@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import firebase from "./firebase";
-import Result from "./Result";
 const Poll = (props) => {
   const pollID = props.match.params.pollID;
   const [objectArray, setObjectArray] = useState([]);
   const [vote, setVote] = useState("");
   const [pollObject, setPollObject] = useState({});
+  const [showResult, setShowResult] = useState(false);
 
   const onChangeValue = (e) => {
     setVote(e.target.value);
@@ -18,6 +19,7 @@ const Poll = (props) => {
     } else {
       alert("Please vote!")
     }
+    setShowResult(!showResult);
   };
 
   const changeFirebaseValue = (pollResult) => {
@@ -65,34 +67,41 @@ const Poll = (props) => {
   }, []);
 
   return (
-    <section>
-      <div className="questionBanner">
-        <h2>Question</h2>
-      </div>
-      <div className="poll wrapper">
-        <h3>{objectArray[0]}</h3>
-        <form className="vote" onChange={onChangeValue}>
-          <label>
-            <input type="radio" value="yes" name="vote"/> Yes
-          </label>
-          <label>
-            <input type="radio" value="no" name="vote" /> No
-          </label>
-        </form>
 
-        <button onClick={handleClick}>vote</button>
+    <Router>
+      
+      <Route exact path="/:pollID/result" component={Result} />
 
-        {/* <Route
-          path="/result"
-          render={() => <About who="Paul" what="actually super lovely" />}
-        /> */}
+      <section>
+        <div className="questionBanner">
+          <h2>Question</h2>
+        </div>
+        <div className="poll wrapper">
+          <h3>{objectArray[0]}</h3>
+          <form className="vote" onChange={onChangeValue}>
+            <label>
+              <input type="radio" value="yes" name="vote"/> Yes
+            </label>
+            <label>
+              <input type="radio" value="no" name="vote" /> No
+            </label>
+            
+            {
+              showResult ?
+                <Link to={`${pollID}/result`}>
+                  <button>Show Result</button>
+                </Link>
+              : 
+                <button onClick={handleClick}>vote</button>
+            }
+          </form>
+          
+          Share poll URL: <input value={`http://localhost:3000${props.location.pathname}`} />
+        </div>
+    </section>
+    
+  </Router>
 
-
-        <Result result={objectArray[1] ? objectArray[1] : { yes: 0, no: 0 }} />
-
-        <p>Share poll URL: http://localhost:3000{props.location.pathname}</p>
-      </div>
-  </section>
   );
 };
 

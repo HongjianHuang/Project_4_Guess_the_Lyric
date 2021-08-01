@@ -6,12 +6,13 @@ const Home = () => {
   const [questionInput, setQuestionInput] = useState("");
   const [pollID, setPollID] = useState("");
   //const [questionArray, setQuestionArray] = useState([]);
-  //const [ buttonShow, setButtonShow ] = useState(false);
+  const [ buttonShow, setButtonShow ] = useState(true);
+  const [ questionShow, setQuestionShow] = useState(true);
+  const [ completeQuestion, setCompleteQuestion ] = useState(true);
   const poll = { yes: 0, no: 0 };
 
   const handleInputChange = (e) => {
     const { value } = e.target;
-    console.log(value);
     setQuestionInput(value);
   };
 
@@ -25,16 +26,24 @@ const Home = () => {
       const pollID = dbRef.push([questionInput, poll]).key;
       setQuestionInput("");
       setPollID(pollID);
+      setQuestionShow(!questionShow);
+      setCompleteQuestion(questionInput);
     }
     else {
       alert("Enter a valid response");
     }
-    // setButtonShow(true);
+    console.log(questionInput);
+    setButtonShow(!buttonShow);
     // console.log(buttonShow)
-
   };
 
-  // Function that handles changes in input elements on form
+  const handleBackButton = (keyToDelete) => {
+    const dbRef = firebase.database().ref();
+    dbRef.child(keyToDelete).remove();
+    setQuestionInput("");
+    setButtonShow(!buttonShow);
+    setQuestionShow(!questionShow);
+  }
 
   return (
     <div className="wrapper">
@@ -48,18 +57,46 @@ const Home = () => {
           odio ea necessitatibus!
         </p>
         <form action="submit" onSubmit={handleSubmit}>
-          <label htmlFor="userquestionInput"></label>
-          <input
-            type="text"
-            name="userquestionInput"
-            id="userquestionInput"
-            onChange={handleInputChange}
-          />
-          <button type="submit">Create Poll</button>
+          {
+            questionShow ?
+            null
+            :
+            <p>Question Preview: {completeQuestion}</p>
+          }
+          {(() => {
+            if (buttonShow) {
+              return (
+                <div className="homeForm">
+                  <label htmlFor="userquestionInput"></label>
+                  <input
+                    type="text"
+                    name="userquestionInput"
+                    id="userquestionInput"
+                    onChange={handleInputChange}
+                    value={questionInput}
+                  />
+                  <button type="submit">Create Poll</button>
+                </div>
+              )
+            } else {
+              return (
+                <div>
+                  <Link to={`${pollID}`}>
+                    <button>Start Poll</button>
+                  </Link>
+                  <button type="button" onClick={() => handleBackButton(pollID)}>Go Back</button>
+                </div>
+                
+              )
+            }
+          })()}
+
         </form>
-        <Link to={`${pollID}`}>
-          <button>Start Poll</button>
-        </Link>
+
+        
+
+        
+
       </main>
     </div>
   );

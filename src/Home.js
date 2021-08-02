@@ -5,16 +5,16 @@ const Home = (props) => {
   const [questionInput, setQuestionInput] = useState("");
   const [pollID, setPollID] = useState("");
   //const [questionArray, setQuestionArray] = useState([]);
-  const [ buttonShow, setButtonShow ] = useState(true);
-  const [ questionShow, setQuestionShow] = useState(true);
-  const [ completeQuestion, setCompleteQuestion ] = useState(true);
+  const [buttonShow, setButtonShow] = useState(true);
+  const [questionShow, setQuestionShow] = useState(true);
+  const [completeQuestion, setCompleteQuestion] = useState(true);
   const [answerInput, setAnswerInput] = useState("");
-  const [poll, setPoll] = useState({ yes: 0, no: 0 })
+  const [poll, setPoll] = useState({ yes: 0, no: 0 });
 
-  const handleAnswerChange = (e) =>{
-    const {value} = e.target;
+  const handleAnswerChange = (e) => {
+    const { value } = e.target;
     setAnswerInput(value);
-  }
+  };
   const handleQuestionChange = (e) => {
     const { value } = e.target;
     setQuestionInput(value);
@@ -33,34 +33,29 @@ const Home = (props) => {
       setQuestionShow(!questionShow);
       setCompleteQuestion(questionInput);
       setButtonShow(!buttonShow);
-    }
-    else {
+    } else {
       alert("Enter a valid response");
     }
     // console.log(buttonShow)
   };
-  const handleAnswerSubmit = (e) =>{
+  const handleAnswerSubmit = (e) => {
     e.preventDefault();
     console.log(e);
-  }
-  const handleRemoveClick = (e) =>{
-    
+  };
+  const handleRemoveClick = (e) => {
     const key = e.target.previousSibling.innerHTML;
     const tempPollObj = poll;
     delete tempPollObj[key];
     setPoll(tempPollObj);
     console.log(poll);
-  }
+  };
   const handleBackButton = (keyToDelete) => {
     const dbRef = firebase.database().ref();
     dbRef.child(keyToDelete).remove();
     setQuestionInput("");
     setButtonShow(!buttonShow);
     setQuestionShow(!questionShow);
-  }
-const AnswerOption = ()=>{
-  
-}
+  };
   return (
     <div className="wrapper">
       <header>
@@ -72,29 +67,24 @@ const AnswerOption = ()=>{
           libero expedita tenetur commodi voluptates repellat facilis provident
           odio ea necessitatibus!
         </p>
-        
-          {
-            questionShow ?
-            null
-            :
-            <div>
+
+        {questionShow ? null : (
+          <div>
             <p>Question Preview: {completeQuestion}</p>
-              <ul>
-              {poll.__proto__.constructor.keys(poll).map((item,i) => (
-              <li className="travelcompany-input" key={i}>
-              <span className="input-label">{item}</span>
-              {<button onClick = {handleRemoveClick}>Remove</button>}
-              </li>
+            <ul>
+              {poll.__proto__.constructor.keys(poll).map((item, i) => (
+                <li className="travelcompany-input" key={i}>
+                  <span className="input-label">{item}</span>
+                  {<button onClick={handleRemoveClick}>Remove</button>}
+                </li>
               ))}
-              </ul>
-            </div>
-            
-            
-          }
-          {(() => {
-            if (buttonShow) {
-              return (
-                <form action="submit" onSubmit={handleQuestionSubmit}>
+            </ul>
+          </div>
+        )}
+        {(() => {
+          if (buttonShow) {
+            return (
+              <form action="submit" onSubmit={handleQuestionSubmit}>
                 <div className="homeForm">
                   <label htmlFor="userquestionInput"></label>
                   <input
@@ -106,16 +96,18 @@ const AnswerOption = ()=>{
                   />
                   <button type="submit">Create Poll</button>
                 </div>
-                 </form>
-              )
-            } else {
-              return (
-                <div>
-                  <Link to={`${pollID}`}>
-                    <button>Start Poll</button>
-                  </Link>
-                  <button type="button" onClick={() => handleBackButton(pollID)}>Go Back</button>
-                  <form action = "submit" onSubmit = {handleAnswerSubmit}>
+              </form>
+            );
+          } else {
+            return (
+              <div>
+                <Link to={`${pollID}`}>
+                  <button>Start Poll</button>
+                </Link>
+                <button type="button" onClick={() => handleBackButton(pollID)}>
+                  Go Back
+                </button>
+                <form action="submit" onSubmit={handleAnswerSubmit}>
                   <div>
                     <label htmlFor="userAnswerOptionInput"></label>
                     <input
@@ -127,21 +119,11 @@ const AnswerOption = ()=>{
                     />
                     <button type="submit">Add Options</button>
                   </div>
-                  </form>
-                  
-                  
-                </div>
-                
-              )
-            }
-          })()}
-
-       
-
-        
-
-        
-
+                </form>
+              </div>
+            );
+          }
+        })()}
       </main>
     </div>
   );

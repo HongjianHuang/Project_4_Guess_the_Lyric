@@ -224,8 +224,9 @@ html {
 
 /* END OF SET UP CSS */
 
-/* General and Home.js Styles */
+/* General Styles */
 
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Lexend:wght@400;600;700&display=swap');
 
 * {
   margin: 0;
@@ -238,8 +239,8 @@ html {
 
 .App {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #fff;
+  background: #161b40;
+  font-family: 'Lato', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -254,19 +255,11 @@ html {
 
 a {
   text-decoration: none;
-  color: #41b85b;
+  color: #41b853;
 }
 
 p {
-  color: #000;
-}
-
-h1 {
-  color: #39b1c6;
-}
-
-header {
-  padding-top: 100px;
+  color: #fff;
 }
 
 form {
@@ -277,31 +270,134 @@ form {
   justify-content: center;
 }
 
-input[type="text"] {
-  width: 50%;
-  align-self: center;
+.hide {
+  display: none;
 }
 
-button {
-  width: 25%;
-  margin: 20px 0px;
+.modalBackground {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalContainer {
+  background: white;
+  border-radius: 10px;
+  width: 35%;
+  height: 150px;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-button[type="submit"] {
-  width: 25%;
-  align-self: center;
+.modalContainer p {
+  color: #161b40;
+}
+
+.closeButton {
+  position: absolute;
+  right: 20px;
+  top: 0;
+}
+
+.closeButton button {
+  width: auto;
+  background: transparent;
+  border: none;
+}
+
+.errorMesage {
+  max-width: 95%;
+  margin: 0 auto;
+  overflow: auto;
 }
 
 footer {
   padding: 10px 0;
-  background: #25242c;
+  background: #000;
 }
 
 footer p {
   color: #fff;
 }
 
-/* Poll.js Styles */
+/* Home Page Styles */
+
+header {
+  padding-top: 50px;
+}
+
+h1 {
+  color: #efa500;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+
+.directions {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.input-label {
+  color: #fff;
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+input[type="text"] {
+  width: 40%;
+  min-width: 200px;
+  align-self: center;
+  border-radius: 5px;
+  border: 0;
+  padding: 3px;
+}
+
+li {
+  list-style: none;
+}
+
+li button {
+  background: #f40058;
+}
+
+.homeForm {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin: 20px 0px;
+  background-color: #43bee5;
+  color: #161b40;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+button[type="submit"] {
+  width: 150px;
+  align-self: center;
+}
+
+.startOverButton {
+  background: #f40058;
+}
+
+.startPollButton {
+  background: #41b853;
+}
+
+/* Poll Styles */
 
 h2 {
   padding: 15px 0;
@@ -313,6 +409,17 @@ h3 {
 }
 
 .questionBanner {
-  background-color: #cc3535;
+  background: #3c4168;
 }
+
+.questionBanner h2 {
+  color: #fff;
+}
+
+/* Result Styles */
+
+
+
+
+
 

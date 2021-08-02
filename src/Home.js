@@ -9,7 +9,8 @@ const Home = (props) => {
   const [questionShow, setQuestionShow] = useState(true);
   const [completeQuestion, setCompleteQuestion] = useState(true);
   const [answerInput, setAnswerInput] = useState("");
-  const [poll, setPoll] = useState({ yes: 0, no: 0 });
+  const [ poll, setPoll] = useState({ Yes: 0, No: 0 });
+  const [ active, setActive ] = useState(false);
 
   const handleAnswerChange = (e) => {
     const { value } = e.target;
@@ -34,7 +35,7 @@ const Home = (props) => {
       setCompleteQuestion(questionInput);
       setButtonShow(!buttonShow);
     } else {
-      alert("Enter a valid response");
+      setActive(!active);
     }
     // console.log(buttonShow)
   };
@@ -62,20 +63,16 @@ const Home = (props) => {
         <h1>Voting App</h1>
       </header>
       <main>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-          libero expedita tenetur commodi voluptates repellat facilis provident
-          odio ea necessitatibus!
-        </p>
-
+        
         {questionShow ? null : (
           <div>
-            <p>Question Preview: {completeQuestion}</p>
+            <p>Question Preview:</p> 
+            <p>{completeQuestion}</p>
             <ul>
               {poll.__proto__.constructor.keys(poll).map((item, i) => (
-                <li className="travelcompany-input" key={i}>
+                <li key={i}>
                   <span className="input-label">{item}</span>
-                  {<button onClick={handleRemoveClick}>Remove</button>}
+                  {<button onClick={handleRemoveClick}>x</button>}
                 </li>
               ))}
             </ul>
@@ -84,29 +81,30 @@ const Home = (props) => {
         {(() => {
           if (buttonShow) {
             return (
-              <form action="submit" onSubmit={handleQuestionSubmit}>
-                <div className="homeForm">
-                  <label htmlFor="userquestionInput"></label>
-                  <input
-                    type="text"
-                    name="userquestionInput"
-                    id="userquestionInput"
-                    onChange={handleQuestionChange}
-                    value={questionInput}
-                  />
-                  <button type="submit">Create Poll</button>
-                </div>
-              </form>
+              <div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+                  libero expedita tenetur commodi voluptates repellat facilis provident
+                  odio ea necessitatibus!
+                </p>
+                <form action="submit" onSubmit={handleQuestionSubmit}>
+                  <div className="homeForm">
+                    <label htmlFor="userquestionInput"></label>
+                    <input
+                      type="text"
+                      name="userquestionInput"
+                      id="userquestionInput"
+                      onChange={handleQuestionChange}
+                      value={questionInput}
+                    />
+                    <button type="submit">Create Poll</button>
+                  </div>
+                </form>
+              </div>
             );
           } else {
             return (
               <div>
-                <Link to={`${pollID}`}>
-                  <button>Start Poll</button>
-                </Link>
-                <button type="button" onClick={() => handleBackButton(pollID)}>
-                  Go Back
-                </button>
                 <form action="submit" onSubmit={handleAnswerSubmit}>
                   <div>
                     <label htmlFor="userAnswerOptionInput"></label>
@@ -120,13 +118,32 @@ const Home = (props) => {
                     <button type="submit">Add Options</button>
                   </div>
                 </form>
+                <div className="directions">
+                  <button type="button" onClick={() => handleBackButton(pollID)}className="startOverButton">Start Over</button>
+                  <Link to={`${pollID}`}>
+                    <button className="startPollButton">Start Poll</button>
+                  </Link>
+                </div>
               </div>
             );
           }
         })()}
+        <div className={active ? null : "hide"}>
+          <div className="modalBackground">
+            <div className="modalContainer">
+              <div className="closeButton">
+                <button onClick={() => setActive(!active)}> X </button>
+              </div>
+              <div className="errorMessage">
+                <p>Error message will go here</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );
+
 };
 
 export default Home;

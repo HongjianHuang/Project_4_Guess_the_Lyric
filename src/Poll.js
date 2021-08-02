@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Link} from "react-router-dom";
+import {Route, Link} from "react-router-dom";
 import firebase from "./firebase";
 import Result from "./Result";
 const Poll = (props) => {
@@ -67,7 +67,8 @@ const Poll = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-      <section>
+    <div>
+       <section>
         <div className="questionBanner">
           <h2>Question</h2>
         </div>
@@ -95,12 +96,14 @@ const Poll = (props) => {
           </form>
           Share poll URL: <input readOnly value={`${window.location.href}`} />
          
-        
-          <Route exact path="/:pollID/result" component={()=><Result result={pollObject.value[1]}/>} />
+          <Route path="/:pollID/result" component={()=><Result result={pollObject.value[1]}/>} />
          
         </div>
     </section>
-    
+      
+    </div>
+     
+
 
   );
 };

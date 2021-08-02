@@ -16,7 +16,7 @@ import Poll from './Poll';
     <div className="App">
       
 
-          <Route exact path="/:pollID" component={Poll}/>
+          <Route path="/:pollID" component={Poll}/>
           <Route exact path="/" component={Home}/>
   
       

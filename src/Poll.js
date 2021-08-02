@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Route, Link} from "react-router-dom";
 import firebase from "./firebase";
+import Result from "./Result";
 const Poll = (props) => {
   const pollID = props.match.params.pollID;
   const [objectArray, setObjectArray] = useState([]);
   const [vote, setVote] = useState("");
   const [pollObject, setPollObject] = useState({});
   const [showResult, setShowResult] = useState(false);
-
   const onChangeValue = (e) => {
     setVote(e.target.value);
   };
-
   const handleClick = () => {
     if (vote === "yes" || vote === "no") {
       console.log(vote);
       changeFirebaseValue(vote);
+      setShowResult(!showResult);
     } else {
       alert("Please vote!")
     }
-    setShowResult(!showResult);
+    
   };
 
   const changeFirebaseValue = (pollResult) => {
@@ -64,14 +64,9 @@ const Poll = (props) => {
       // console.log(newStateArray);
       //setQuestionArray(newStateArray[0]);
     });
-  }, []);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
-
-    <Router>
-      
-      <Route exact path="/:pollID/result" component={Result} />
-
       <section>
         <div className="questionBanner">
           <h2>Question</h2>
@@ -88,19 +83,24 @@ const Poll = (props) => {
             
             {
               showResult ?
-                <Link to={`${pollID}/result`}>
-                  <button>Show Result</button>
-                </Link>
+                null
               : 
-                <button onClick={handleClick}>vote</button>
+              <Link to={`${pollID}/result`} onClick ={handleClick}>
+                <button>Vote</button>
+              </Link>
             }
+             <Link to="/">
+                <button >Go back Home</button>
+            </Link>
           </form>
-          
-          Share poll URL: <input value={`http://localhost:3000${props.location.pathname}`} />
+          Share poll URL: <input readOnly value={`${window.location.href}`} />
+         
+        
+          <Route exact path="/:pollID/result" component={()=><Result result={pollObject.value[1]}/>} />
+         
         </div>
     </section>
     
-  </Router>
 
   );
 };

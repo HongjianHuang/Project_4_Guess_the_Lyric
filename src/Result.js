@@ -1,5 +1,5 @@
 const Result = (props) => {
-  //console.log(props);
+  console.log(props);
   const { result } = props;
   const total = result.yes + result.no; 
 

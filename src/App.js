@@ -1,29 +1,28 @@
 import "./App.css";
 import { 
   BrowserRouter as Router, 
-  Route, 
-  Link } 
+  Route} 
   from 'react-router-dom';
 import Home from './Home';
 import Poll from './Poll';
-import Result from './Result';
 
 
 
   function App() {
     
-  
 
   return (
     <Router>
     <div className="App">
+      
 
-      <Route exact path="/" component={ Home }/>
-
-      <Route exact path="/:pollID" component={Poll}/>
+          <Route exact path="/:pollID" component={Poll}/>
+          <Route exact path="/" component={Home}/>
+  
+      
 
       <footer>
-          <p>Created at <a href="http://junocollege.com" target="_blank">Juno College</a> by Hongjian Huang, Richard Gayle, and Sherry Truong</p>
+          <p>Created at <a href="http://junocollege.com" target="_blank" rel="noreferrer">Juno College</a> by Hongjian Huang, Richard Gayle, and Sherry Truong</p>
       </footer>
 
     </div>
@@ -34,7 +33,7 @@ import Result from './Result';
 
 export default App;
 
-{/* <Router>
+/* <Router>
 
 <div className="App">
   
@@ -61,7 +60,7 @@ export default App;
 
 </div>
 
-</Router> */}
+</Router> */
 
 // PSEUDO CODE
 // === MVP === 

@@ -28,12 +28,13 @@ const Home = () => {
       setPollID(pollID);
       setQuestionShow(!questionShow);
       setCompleteQuestion(questionInput);
+      setButtonShow(!buttonShow);
     }
     else {
       alert("Enter a valid response");
     }
-    console.log(questionInput);
-    setButtonShow(!buttonShow);
+  
+    
     // console.log(buttonShow)
   };
 

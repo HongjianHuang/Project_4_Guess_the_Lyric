@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import firebase from "./firebase";
+import "./FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Home = () => {
   const [questionInput, setQuestionInput] = useState("");
   const [pollID, setPollID] = useState("");
@@ -77,14 +80,14 @@ const Home = () => {
       </header>
       <main>
         {questionShow ? null : (
-          <div>
+          <div className="questionPreview">
             <p>Question Preview:</p>
             <p>{completeQuestion}</p>
             <ul>
               {poll.__proto__.constructor.keys(poll).map((item, i) => (
                 <li key={i}>
                   <span className="input-label">{item}</span>
-                  {<button onClick={handleRemoveClick}>x</button>}
+                  {<button aria-label="Remove list item" onClick={handleRemoveClick}><FontAwesomeIcon icon="times" aria-hidden="true" /></button>}
                 </li>
               ))}
             </ul>
@@ -127,7 +130,7 @@ const Home = () => {
                       onChange={handleAnswerChange}
                       value={answerInput}
                     />
-                    <button type="submit">Add Options</button>
+                    <button type="submit"> Add Option</button>
                   </div>
                 </form>
                 <div className="directions">

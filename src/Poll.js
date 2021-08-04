@@ -93,7 +93,7 @@ const Poll = (props) => {
               </Link>
             )}
           </form>
-          Share poll URL:
+          <label>Share poll URL</label>
           <input
             className="urlDisplay"
             readOnly

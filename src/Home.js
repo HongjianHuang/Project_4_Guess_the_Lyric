@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import firebase from "./firebase";
-const Home = (props) => {
+const Home = () => {
   const [questionInput, setQuestionInput] = useState("");
   const [pollID, setPollID] = useState("");
   //const [questionArray, setQuestionArray] = useState([]);
@@ -9,8 +9,8 @@ const Home = (props) => {
   const [questionShow, setQuestionShow] = useState(true);
   const [completeQuestion, setCompleteQuestion] = useState(true);
   const [answerInput, setAnswerInput] = useState("");
-  const [ poll, setPoll] = useState({ Yes: 0, No: 0 });
-  const [ active, setActive ] = useState(false);
+  const [poll, setPoll] = useState({ Yes: 0, No: 0 });
+  const [active, setActive] = useState(false);
 
   const handleAnswerChange = (e) => {
     const { value } = e.target;
@@ -28,6 +28,7 @@ const Home = (props) => {
     console.log(questionInput);
     if (questionInput !== "") {
       const dbRef = firebase.database().ref();
+      setPoll({ Yes: 0, No: 0 });
       const pollID = dbRef.push([questionInput, poll]).key;
       setQuestionInput("");
       setPollID(pollID);
@@ -41,15 +42,29 @@ const Home = (props) => {
   };
   const handleAnswerSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    const dbRef = firebase.database().ref(pollID);
+    // const newOption = e.target[0].value;
+    let pollObjCopy = Object.assign({}, poll);
+    pollObjCopy = Object.assign(pollObjCopy, { [e.target[0].value]: 0 });
+    const value = [completeQuestion, pollObjCopy];
+    setPoll(pollObjCopy);
+    dbRef.set(value);
+    //console.log(e.target[0].value);
   };
   const handleRemoveClick = (e) => {
+    const dbRef = firebase.database().ref(pollID);
     const key = e.target.previousSibling.innerHTML;
-    const tempPollObj = poll;
-    delete tempPollObj[key];
-    setPoll(tempPollObj);
-    console.log(poll);
+    const pollObjCopy = Object.assign({}, poll);
+    delete pollObjCopy[key];
+    const value = [completeQuestion, pollObjCopy];
+    setPoll(pollObjCopy);
+    dbRef.set(value);
   };
+  // const deleteKey = (key) => {
+  //   const key = e.target.previousSibling.innerHTML;
+  //   const tempPollObj = poll;
+  //   delete tempPollObj[key];
+  // };
   const handleBackButton = (keyToDelete) => {
     const dbRef = firebase.database().ref();
     dbRef.child(keyToDelete).remove();
@@ -63,10 +78,9 @@ const Home = (props) => {
         <h1>Voting App</h1>
       </header>
       <main>
-        
         {questionShow ? null : (
           <div>
-            <p>Question Preview:</p> 
+            <p>Question Preview:</p>
             <p>{completeQuestion}</p>
             <ul>
               {poll.__proto__.constructor.keys(poll).map((item, i) => (
@@ -83,9 +97,9 @@ const Home = (props) => {
             return (
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-                  libero expedita tenetur commodi voluptates repellat facilis provident
-                  odio ea necessitatibus!
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Mollitia libero expedita tenetur commodi voluptates repellat
+                  facilis provident odio ea necessitatibus!
                 </p>
                 <form action="submit" onSubmit={handleQuestionSubmit}>
                   <div className="homeForm">
@@ -119,7 +133,13 @@ const Home = (props) => {
                   </div>
                 </form>
                 <div className="directions">
-                  <button type="button" onClick={() => handleBackButton(pollID)}className="startOverButton">Start Over</button>
+                  <button
+                    type="button"
+                    onClick={() => handleBackButton(pollID)}
+                    className="startOverButton"
+                  >
+                    Start Over
+                  </button>
                   <Link to={`${pollID}`}>
                     <button className="startPollButton">Start Poll</button>
                   </Link>
@@ -143,7 +163,6 @@ const Home = (props) => {
       </main>
     </div>
   );
-
 };
 
 export default Home;

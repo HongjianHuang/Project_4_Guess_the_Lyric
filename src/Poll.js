@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Route, Link} from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import firebase from "./firebase";
 import Result from "./Result";
 const Poll = (props) => {
@@ -20,12 +20,11 @@ const Poll = (props) => {
     } else {
       setActive(!active);
     }
-    
   };
 
   const handleCopyURL = (e) => {
     navigator.clipboard.writeText(e.target.previousSibling.value);
-  }
+  };
 
   const changeFirebaseValue = (pollResult) => {
     const dbRef = firebase.database().ref(pollID);
@@ -42,19 +41,11 @@ const Poll = (props) => {
     //console.log(dbRef.push(pollObjectRef));
   };
   useEffect(() => {
-    //Variable that holds reference to database
     const dbRef = firebase.database().ref();
-    // Event listener to variable dbRef; fires each time there is a change in value in database. Takes a callback function which will get data (response) from the database
     dbRef.on("value", (response) => {
-      // Store response from query to firebase inside responseData variable
       const responseData = response.val();
-      // Variable that stores the new state
-      //const newStateArray = [];
-      // Local variable propertyName represents each of the properties or keys in responseData object
 
       for (let questionKey in responseData) {
-        // New object is declared and is pushed into newStateArray
-
         const Object = {
           key: questionKey,
           value: responseData[questionKey],
@@ -64,16 +55,12 @@ const Poll = (props) => {
           setPollObject(Object);
         }
       }
-      // Set new potluck list to state
-      // console.log(newStateArray[0].key);
-      // console.log(newStateArray);
-      //setQuestionArray(newStateArray[0]);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
+  console.log(objectArray[1]);
   return (
     <div>
-       <section>
+      <section>
         <div className="questionBanner">
           <h2>Question</h2>
         </div>
@@ -81,39 +68,51 @@ const Poll = (props) => {
           <h3>{objectArray[0]}</h3>
           <form className="vote" onChange={onChangeValue}>
             <label>
-              <input type="radio" value="Yes" name="vote"/> Yes
+              <input type="radio" value="Yes" name="vote" /> Yes
             </label>
             <label>
               <input type="radio" value="No" name="vote" /> No
             </label>
-            
-            {
-              showResult ?
-                null
-              : 
-              <Link to={`${pollID}/result`} onClick ={handleClick}>
+            {/* {objectArray[1].map(function (object, i) {
+              return (
+                <label key={i}>
+                  <input type="radio" value={object} name="vote" /> {Object}
+                </label>
+              );
+            })} */}
+            {/* {poll.__proto__.constructor.keys(poll).map((item, i) => (
+                <li key={i}>
+                  <span className="input-label">{item}</span>
+                  {<button onClick={handleRemoveClick}>x</button>}
+                </li>
+              ))} */}
+
+            {showResult ? null : (
+              <Link to={`${pollID}/result`} onClick={handleClick}>
                 <button>Vote</button>
               </Link>
-            }
-             <Link to="/">
-                <button >Go back Home</button>
-            </Link>
+            )}
           </form>
-          Share poll URL: 
-          <input className="urlDisplay"
-            readOnly value={
-              `${window.location.href}`.includes("result") ? `${window.location.href}`.replace("result", "") : `${window.location.href}`}
+          Share poll URL:
+          <input
+            className="urlDisplay"
+            readOnly
+            value={
+              `${window.location.href}`.includes("result")
+                ? `${window.location.href}`.replace("result", "")
+                : `${window.location.href}`
+            }
           />
-          <button 
-            onClick={handleCopyURL}
-          >
-            Copy URL
-          </button>
-         
-          <Route path="/:pollID/result" component={()=><Result result={pollObject.value[1]}/>} />
-         
+          <button onClick={handleCopyURL}>Copy URL</button>
+          <Route
+            path="/:pollID/result"
+            component={() => <Result result={pollObject.value[1]} />}
+          />
         </div>
-    </section>
+        <Link to="/">
+          <button>Create New Poll</button>
+        </Link>
+      </section>
 
       <div className={active ? null : "hide"}>
         <div className="modalBackground">
@@ -127,11 +126,7 @@ const Poll = (props) => {
           </div>
         </div>
       </div>
-      
     </div>
-     
-
-
   );
 };
 

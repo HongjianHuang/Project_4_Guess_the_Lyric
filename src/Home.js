@@ -43,13 +43,11 @@ const Home = () => {
   const handleAnswerSubmit = (e) => {
     e.preventDefault();
     const dbRef = firebase.database().ref(pollID);
-    // const newOption = e.target[0].value;
     let pollObjCopy = Object.assign({}, poll);
     pollObjCopy = Object.assign(pollObjCopy, { [e.target[0].value]: 0 });
     const value = [completeQuestion, pollObjCopy];
     setPoll(pollObjCopy);
     dbRef.set(value);
-    //console.log(e.target[0].value);
   };
   const handleRemoveClick = (e) => {
     const dbRef = firebase.database().ref(pollID);

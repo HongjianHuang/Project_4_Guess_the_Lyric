@@ -222,7 +222,7 @@ html {
   overflow: hidden;
 }
 
-/* END OF SET UP CSS */
+/* ================= END OF SET UP CSS =================*/
 
 /* General Styles */
 
@@ -370,6 +370,12 @@ li button {
   background: #f40058;
   height: 25px;
   margin-left: 2%;
+  padding: 3px;
+}
+
+li button:hover,
+li button:focus {
+  background: #f40000;
 }
 
 .homeForm {
@@ -381,9 +387,10 @@ button {
   margin: 20px 0px;
   background-color: #43bee5;
   color: #161b40;
-  padding: 3px;
+  padding: 3px 5px;
   border-radius: 5px;
   border: none;
+  text-transform: uppercase;
 }
 
 button[type="submit"] {
@@ -438,6 +445,9 @@ h3 {
 
 /* Result Styles */
 
+h4 {
+  color: #fff;
+}
 
 
 

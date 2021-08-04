@@ -16,12 +16,9 @@ import Poll from './Poll';
     <Router>
     <div className="App">
       
-
           <Route path="/:pollID" component={Poll}/>
           <Route exact path="/" component={Home}/>
   
-      
-
       <footer>
           <p>Created at <a href="http://junocollege.com" target="_blank" rel="noreferrer">Juno College</a> by Hongjian Huang, Richard Gayle, and Sherry Truong</p>
       </footer>

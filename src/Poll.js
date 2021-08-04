@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
 import firebase from "./firebase";
 import Result from "./Result";
+import Modal from "./Modal";
+import VotingForm from "./VotingForm";
+
 const Poll = (props) => {
   const pollID = props.match.params.pollID;
   const [objectArray, setObjectArray] = useState([]);
@@ -9,12 +12,16 @@ const Poll = (props) => {
   const [pollObject, setPollObject] = useState({});
   const [showResult, setShowResult] = useState(false);
   const [active, setActive] = useState(false);
+
+  // Function to capture user's selected vote
   const onChangeValue = (e) => {
     setVote(e.target.value);
   };
+
+  // Function that adds option properties to the question object
   const handleClick = () => {
-    if (vote === "Yes" || vote === "No") {
-      console.log(vote);
+    props.history.push("/");
+    if (Object.keys(pollObject.value[1]).includes(vote)) {
       changeFirebaseValue(vote);
       setShowResult(!showResult);
     } else {
@@ -22,29 +29,26 @@ const Poll = (props) => {
     }
   };
 
+  // Function to copy the unique poll URL upon user click
   const handleCopyURL = (e) => {
     navigator.clipboard.writeText(e.target.previousSibling.value);
   };
 
+  // Function that changes the Firebase value based on selected option
   const changeFirebaseValue = (pollResult) => {
     const dbRef = firebase.database().ref(pollID);
-    console.log(dbRef);
     const pollObjectRef = pollObject;
-    console.log(pollObjectRef);
-    if (pollResult === "Yes") {
-      //change the firebase value
-      pollObjectRef.value[1].Yes = pollObjectRef.value[1].Yes + 1;
-    } else if (pollResult === "No") {
-      pollObjectRef.value[1].No = pollObjectRef.value[1].No + 1;
+    for (let i=0; i < Object.keys(pollObject.value[1]).length; i++) {
+      if (pollResult === Object.keys(pollObject.value[1])[i]) {
+        pollObjectRef.value[1][pollResult] = pollObjectRef.value[1][pollResult] + 1;
+      }
     }
     dbRef.set(pollObjectRef.value);
-    //console.log(dbRef.push(pollObjectRef));
   };
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.on("value", (response) => {
       const responseData = response.val();
-
       for (let questionKey in responseData) {
         const Object = {
           key: questionKey,
@@ -57,43 +61,24 @@ const Poll = (props) => {
       }
     });
   }, []);
-  console.log(objectArray[1]);
+
+  // Function to close modal when user clicks outside modal
+  const clickOffToCloseModal = (e) => {
+    if (e.target.closest(".modalContainer") === null && active === true) {
+      setActive(false);
+    }
+  };
+
   return (
-    <div>
+    <div onClick={clickOffToCloseModal}>
       <section>
         <div className="questionBanner">
           <h2>Question</h2>
         </div>
         <div className="poll wrapper">
           <h3>{objectArray[0]}</h3>
-          <form className="vote" onChange={onChangeValue}>
-            <label>
-              <input type="radio" value="Yes" name="vote" /> Yes
-            </label>
-            <label>
-              <input type="radio" value="No" name="vote" /> No
-            </label>
-            {/* {objectArray[1].map(function (object, i) {
-              return (
-                <label key={i}>
-                  <input type="radio" value={object} name="vote" /> {Object}
-                </label>
-              );
-            })} */}
-            {/* {poll.__proto__.constructor.keys(poll).map((item, i) => (
-                <li key={i}>
-                  <span className="input-label">{item}</span>
-                  {<button onClick={handleRemoveClick}>x</button>}
-                </li>
-              ))} */}
-
-            {showResult ? null : (
-              <Link to={`${pollID}/result`} onClick={handleClick}>
-                <button>Vote</button>
-              </Link>
-            )}
-          </form>
-          <label>Share poll URL</label>
+          <VotingForm onChangeValue={onChangeValue} objectArray={objectArray} showResult={showResult} pollID={pollID} vote={vote} handleClick={handleClick} />
+          <label>Share poll URL: </label>
           <input
             className="urlDisplay"
             readOnly
@@ -114,18 +99,7 @@ const Poll = (props) => {
         </Link>
       </section>
 
-      <div className={active ? null : "hide"}>
-        <div className="modalBackground">
-          <div className="modalContainer">
-            <div className="closeButton">
-              <button onClick={() => setActive(!active)}> X </button>
-            </div>
-            <div className="errorMessage">
-              <p>Error message will go here</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal setActive={setActive} active={active} />
     </div>
   );
 };

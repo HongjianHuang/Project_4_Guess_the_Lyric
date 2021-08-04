@@ -1,18 +1,33 @@
-const AnswerOption =(props)=>{
-    const {poll} = props;
-    console.log(props);
+import React from 'react';
+import "./FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const AnswerOption = (props) => {
     
+    const {questionShow, handleRemoveClick, completeQuestion, poll} = props;
+
     return(
-        <div>
-            {/* <ul>
-            {poll.__proto__.constructor.keys(poll).map((item,i) => (
-            <li className="travelcompany-input" key={i}>
-            <span className="input-label">{item}</span>
-            {<button onClick = {props.clickFunction()}>Remove</button>}
-            </li>
-            ))}
-            </ul> */}
-        </div>
+        <React.Fragment>
+        {
+            questionShow ? null : (
+                <div className="questionPreview">
+                    <p>Question Preview:</p>
+                    <p>{completeQuestion}</p>
+                    <ul>
+                        {Object.keys(poll).map((item, i) => (
+                            <li key={i}>
+                                <span className="input-label">{item}</span>
+                                {<button aria-label="Remove list item" onClick={handleRemoveClick}
+                                >
+                                    <FontAwesomeIcon icon="times" aria-hidden="true" />
+                                </button>}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        }
+        </React.Fragment>
     )
 }
 

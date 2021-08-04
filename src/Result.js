@@ -1,27 +1,26 @@
 const Result = (props) => {
-  console.log(props);
   const { result } = props;
-  const total = result.Yes + result.No;
-  console.log(result);
+  const sumValues = Object.values(result).reduce((a, b) => a + b);
 
   return (
     <div className="result">
       <h3>Result</h3>
-      <p>Yes: {result.Yes}</p>
-      <p>No: {result.No}</p>
-      <p>Total Votes: {total}</p>
+      { result ? Object.keys(result).map(function(item, i) {
+        return(
+          <p key={i}>{item}: {result[item]}</p>
+        )
+        }) : null
+      }
+      <p>Total: {sumValues}</p>
 
       <h4>Percentage</h4>
-      <p>Yes: {(result.Yes / total) * 100}%</p>
-      <p>No: {(result.No / total) * 100}%</p>
+      { result ? Object.keys(result).map(function(item, i) {
+        return(
+          <p key={i}>{item}: {((result[item] / sumValues) * 100).toFixed(1)}%</p>
+        )
+        }) : null
+      }
     </div>
   );
 };
 export default Result;
-
-// {
-//   !showResult ?
-
-//           :
-//     <Result result={objectArray[1] ? objectArray[1] : { Yes: 0, No: 0 }} />
-// }

@@ -18,11 +18,11 @@ const VotingForm = (props) => {
                         //     </label>
                         // </div>
 
-                        <div  key={i}className="form__group">
-                            <div className="form__radio-group">
-                                <input type="radio" name="size" id="small" className="form__radio-input" value={object}/>
-                                <label className="form__label-radio" htmlFor="small" className="form__radio-label">
-                                    <span className="form__radio-button"></span> {object}
+                        <div key={i}>
+                            <div>
+                                <input type="radio" name="size" id="small" value={object}/>
+                                <label htmlFor="small">
+                                    <span></span> {object}
                                 </label>
                             </div>
                         </div>

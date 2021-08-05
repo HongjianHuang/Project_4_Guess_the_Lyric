@@ -4,6 +4,7 @@ import Modal from "./Modal";
 import CreatePollForm from "./CreatePollForm";
 import AddOptionsForm from "./AddOptionsForm";
 import AnswerOption from "./AnswerOptions";
+import Header from "./Header"
 
 const Home = () => {
   const [questionInput, setQuestionInput] = useState("");
@@ -96,9 +97,7 @@ const Home = () => {
 
   return (
     <div className="wrapper" onClick={clickOffToCloseModal}>
-      <header>
-        <h1>EasyPoll</h1>
-      </header>
+      <Header />
       <main>
         <AnswerOption poll={poll} questionShow={questionShow} handleRemoveClick={handleRemoveClick} completeQuestion={completeQuestion}/>
 

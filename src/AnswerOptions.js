@@ -11,7 +11,7 @@ const AnswerOption = (props) => {
         {
             questionShow ? null : (
                 <div className="questionPreview">
-                    <p>Question Preview:</p>
+                    <p>Poll Preview:</p>
                     <p>{completeQuestion}</p>
                     <ul>
                         {Object.keys(poll).map((item, i) => (

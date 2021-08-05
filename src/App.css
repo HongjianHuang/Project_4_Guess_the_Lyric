@@ -150,7 +150,7 @@ progress {
 textarea {
   overflow: auto;
 }
-[type="checkbox"],
+[type="radio"],
 [type="radio"] {
   box-sizing: border-box;
   padding: 0;
@@ -255,7 +255,7 @@ html {
 
 a {
   text-decoration: none;
-  color: #41b853;
+  color: #43bee5;;
 }
 
 p {
@@ -269,6 +269,61 @@ form {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.optionContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: -40px;
+  flex-wrap: wrap;
+}
+
+.optionButton {
+  display: flex;
+  /* width: 175px; */
+  align-self: center;
+  background: #41b853;
+  margin-left: 0.75%;
+  padding: 9.5px;
+  min-width: 175px;
+}
+
+.fa-plus-square {
+  align-self: center;
+  margin-right: 9%;
+}
+
+/* span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+} */
+
+/* input[type="radio"] {
+  margin-bottom: 10px;
+  display: none;
+}
+
+input[type="radio"] + *::before {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: white;
+}
+
+input[type="radio"]:checked + *::before {
+  background: radial-gradient(white 0%, white 40%, transparent 50%, transparent);
+  border-color: white;
+}
+
+input[type="radio"]:checked + * {
+  color: white;
+} */
 
 .hide {
   display: none;
@@ -322,6 +377,7 @@ form {
 footer {
   padding: 10px 0;
   background: #000;
+  margin-top: 50px;
 }
 
 footer p {
@@ -331,14 +387,95 @@ footer p {
 /* Home Page Styles */
 
 header {
-  padding-top: 50px;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
   color: #efa500;
   font-family: 'Lexend', sans-serif;
   font-weight: 600;
-  font-size: 2.2rem;
+  font-size: 4.5rem;
+  margin-right: 1%;
+}
+
+.bar {
+  width: 15px;
+  height: 200px;
+  margin-right: 5px;
+}
+.container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  padding: 0 5px;
+  border: 3px solid white;
+  border-radius: 15%;
+  align-self: center;
+}
+.container .bar:nth-child(1) {
+  background: #f40058;
+  animation: bar1 2s linear;
+  height: 100px;
+}
+@keyframes bar1 {
+  0% {
+      height: 0px;
+  }
+  100% {
+      height: 100px;
+  }
+}
+.container .bar:nth-child(2) {
+  background: #efa500;
+  animation: bar2 2s linear;
+  height: 65px;
+}
+@keyframes bar2 {
+  0% {
+      height: 0px;
+  }
+  100% {
+      height: 65px;
+  }
+}
+.container .bar:nth-child(3) {
+  background: #41b853;
+  animation: bar3 2s linear;
+  height: 90px;
+}
+@keyframes bar3 {
+  0% {
+      height: 0px;
+  }
+  100% {
+      height: 90px;
+  }
+}
+.container .bar:nth-child(4) {
+  background: #43bee5;
+  animation: bar4 2s linear;
+  height: 75px;
+  margin-right: 0px;
+}
+@keyframes bar4 {
+  0% {
+      height: 0px;
+  }
+  100% {
+      height: 75px;
+  }
+}
+
+.InstructionsWrapper {
+  max-width: 700px;
+  text-align: center;
+  margin: 0 auto;
+  width: 95%;
+  line-height: 1.5;
 }
 
 .directions {
@@ -351,6 +488,7 @@ h1 {
   color: #fff;
   list-style: none;
   font-size: 1.1rem;
+  align-self: center;
 }
 
 input[type="text"] {
@@ -358,19 +496,25 @@ input[type="text"] {
   min-width: 200px;
   align-self: center;
   border-radius: 5px;
-  border: 0;
-  padding: 3px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
 }
 
 li {
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  max-width: 130px;
+  margin: 0 auto;
 }
 
 li button {
   background: #f40058;
   height: 25px;
   margin-left: 2%;
-  padding: 3px;
+  padding: 5px;
+  padding-bottom: 24px;
 }
 
 li button:hover,
@@ -391,12 +535,20 @@ button {
   border-radius: 5px;
   border: none;
   text-transform: uppercase;
+  padding: 10px;
 }
 
 button[type="submit"] {
-  width: 150px;
+  width: 175px;
   align-self: center;
-  margin-left: 2%;
+}
+
+button:hover, button[type="submit"]:hover, button:focus, button[type="submit"]:focus {
+  cursor: pointer;
+} 
+
+.startOverButton, .startPollButton {
+  padding: 10px;
 }
 
 .startOverButton {
@@ -404,13 +556,13 @@ button[type="submit"] {
 }
 
 .startPollButton {
-  background: #41b853;
+  /* background: #41b853; */
 }
 
-.questionPreview p:first-child {
+.questionPreview p:first-child, .poll p  {
   font-size: 1.1rem;
   margin-bottom: 20px;
-  color: #c5c7d2;
+  color: #919aca;
 }
 
 .questionPreview p:nth-child(2) {
@@ -426,9 +578,12 @@ h2 {
 }
 
 h3 {
-  margin-top: 50px;
   font-size: 2rem;
   color: white;
+}
+
+.poll p {
+  margin-top: 20px;
 }
 
 .questionBanner {
@@ -441,6 +596,13 @@ h3 {
 
 .vote label, .poll label {
   color: white;
+}
+
+.urlDisplay {
+  margin-right: 2%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
 }
 
 /* Result Styles */

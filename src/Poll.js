@@ -4,6 +4,7 @@ import firebase from "./firebase";
 import Result from "./Result";
 import Modal from "./Modal";
 import VotingForm from "./VotingForm";
+import Header from './Header'
 
 const Poll = (props) => {
   const pollID = props.match.params.pollID;
@@ -72,11 +73,10 @@ const Poll = (props) => {
   return (
     <div onClick={clickOffToCloseModal}>
       <section>
-        <div className="questionBanner">
-          <h2>Question</h2>
-        </div>
+        <Header />
         <div className="poll wrapper">
           <h3>{objectArray[0]}</h3>
+          <p>Options</p>
           <VotingForm onChangeValue={onChangeValue} objectArray={objectArray} showResult={showResult} pollID={pollID} vote={vote} handleClick={handleClick} />
           <label>Share poll URL: </label>
           <input

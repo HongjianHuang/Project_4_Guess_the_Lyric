@@ -5,7 +5,7 @@ const CreatePollForm = (props) =>
 
     return(
         <div>
-            <p>
+            <p className="InstructionsWrapper">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Mollitia libero expedita tenetur commodi voluptates repellat
                 facilis provident odio ea necessitatibus!

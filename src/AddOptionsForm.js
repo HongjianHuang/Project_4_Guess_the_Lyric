@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import "./FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AddOptionsForm = (props) => {
 
@@ -8,7 +10,7 @@ const AddOptionsForm = (props) => {
     return (
         <React.Fragment>
             <form action="submit" onSubmit={handleAnswerSubmit}>
-                <div>
+                <div className="optionContainer">
                     <label htmlFor="userAnswerOptionInput"></label>
                     <input
                         type="text"
@@ -17,7 +19,7 @@ const AddOptionsForm = (props) => {
                         onChange={handleAnswerChange}
                         value={answerInput}
                     />
-                    <button type="submit">Add Option</button>
+                    <button className="optionButton" type="submit"> <FontAwesomeIcon icon="plus-square" aria-hidden="true" /><span>Add Option</span></button>
                 </div>
             </form>
             <div className="directions">

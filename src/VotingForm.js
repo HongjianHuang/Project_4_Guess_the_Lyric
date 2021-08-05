@@ -19,11 +19,11 @@ const VotingForm = (props) => {
                         // </div>
 
                         <div key={i}>
-                            <div>
-                                <input type="radio" name="size" id="small" value={object}/>
+                            <div class="radioContainer">
                                 <label htmlFor="small">
-                                    <span></span> {object}
+                                    {object}
                                 </label>
+                                <input type="radio" name="size" id="small" value={object} />
                             </div>
                         </div>
                     );

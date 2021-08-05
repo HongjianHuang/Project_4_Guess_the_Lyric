@@ -300,7 +300,11 @@ form {
   min-width: 175px;
 }
 
-.optionButton:hover, .optionButton:focus {
+.copied {
+  background: #41b853;
+}
+
+.optionButton:hover, .optionButton:focus, .copied:hover, .copied:focus {
   background: #5ACF69;
 }
 
@@ -642,6 +646,20 @@ h2, h3, .vote label, .poll label {
   border-radius: 5px;
   border: none;
   color: #6d6a6a;
+}
+
+.radioContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 130px;
+  margin: 5px auto;
+}
+
+input[type=radio] {
+  content: “”;
+  height: 20px;
+  width: 20px;
+  align-self: center;
 }
 
 /* Result Styles */

@@ -13,6 +13,7 @@ const Poll = (props) => {
   const [pollObject, setPollObject] = useState({});
   const [showResult, setShowResult] = useState(false);
   const [active, setActive] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   // Function to capture user's selected vote
   const onChangeValue = (e) => {
@@ -33,6 +34,7 @@ const Poll = (props) => {
   // Function to copy the unique poll URL upon user click
   const handleCopyURL = (e) => {
     navigator.clipboard.writeText(e.target.previousSibling.value);
+    setCopied(true);
   };
 
   // Function that changes the Firebase value based on selected option
@@ -88,7 +90,9 @@ const Poll = (props) => {
                 : `${window.location.href}`
             }
           />
-          <button  className="hoverLightBlue" onClick={handleCopyURL}>Copy URL</button>
+          {copied ? <button className="copied" onClick={handleCopyURL}>Copied!</button>
+          : <button className="hoverLightBlue" onClick={handleCopyURL}>Copy URL</button>
+          }
           {pollObject.value ? (
             <Route
               path="/:pollID/result"

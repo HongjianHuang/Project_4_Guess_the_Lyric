@@ -88,14 +88,14 @@ const Poll = (props) => {
                 : `${window.location.href}`
             }
           />
-          <button onClick={handleCopyURL}>Copy URL</button>
+          <button  className="hoverLightBlue" onClick={handleCopyURL}>Copy URL</button>
           <Route
             path="/:pollID/result"
             component={() => <Result result={pollObject.value[1]} />}
           />
         </div>
         <Link to="/">
-          <button>Create New Poll</button>
+          <button className="hoverLightBlue">Create New Poll</button>
         </Link>
       </section>
 

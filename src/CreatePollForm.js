@@ -20,7 +20,7 @@ const CreatePollForm = (props) =>
                         onChange={handleQuestionChange}
                         value={questionInput}
                     />
-                    <button type="submit">Create Poll</button>
+                    <button className="importantButton" type="submit">Create Poll</button>
                 </div>
             </form>
         </div>

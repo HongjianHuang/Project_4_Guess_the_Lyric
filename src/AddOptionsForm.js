@@ -31,7 +31,7 @@ const AddOptionsForm = (props) => {
                     Start Over
                 </button>
                 <Link to={`${pollID}`}>
-                    <button className="startPollButton">Start Poll</button>
+                    <button className="startPollButton importantButton" >Start Poll</button>
                 </Link>
             </div>
         </React.Fragment>

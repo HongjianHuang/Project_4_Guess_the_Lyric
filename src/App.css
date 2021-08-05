@@ -274,24 +274,25 @@ button {
   position: relative;
 }
 
+form, .optionContainer, optionButton {
+  display: flex;
+}
+
 form {
   margin-top: 75px;
-  display: flex;
+  margin-bottom: 15px;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .optionContainer {
-  display: flex;
   justify-content: center;
   margin-top: -40px;
   flex-wrap: wrap;
 }
 
 .optionButton {
-  display: flex;
-  /* width: 175px; */
   align-self: center;
   background: #41b853;
   margin-left: 0.75%;
@@ -307,22 +308,7 @@ form {
   background: #6BD1F0;
 } 
 
-/* BUTTON EFFECTS */
-
-/* NEON STARTS */
-/* .poll button:hover {
-  color: #255784;
-    background: #2196f3;
-    box-shadow: 0 0 10px #2196f3, 0 0 20px #2196f3, 0 0 20px #2196f3;
-    color: white;
-    transition: 0.3s;;
-  } */
-
-  /* NEON ENDS */
-
-  /* PULSE EFFECT START*/
-
-
+/* PULSE EFFECT BEGINNING */
   .importantButton::before, .importantButton::after {
     content: '';
     position: absolute;
@@ -332,11 +318,6 @@ form {
     right: 0;
     border-radius: 5px;
   } 
-
-  /* .poll button::before {
-    background-color: red;
-    z-index: 10;
-  } */
 
   .importantButton:hover{
     color: white;
@@ -359,8 +340,7 @@ form {
       opacity: 0;
     }
   }
-  /* PULSE EFFECT END */
-
+/* PULSE EFFECT END */
 
 .fa-plus-square {
   align-self: center;
@@ -415,10 +395,14 @@ form {
   opacity: 1;
 }
 
-
-
 .hide {
   display: none;
+}
+
+.modalBackground, .modalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modalBackground {
@@ -428,19 +412,14 @@ form {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
+
 .modalContainer {
   background: white;
   border-radius: 10px;
   width: 35%;
   height: 150px;
   min-width: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 }
 
@@ -450,14 +429,20 @@ form {
 
 .closeButton {
   position: absolute;
-  right: 20px;
-  top: 0;
+  right: 5px;
+  top: -5px;
 }
 
 .closeButton button {
   width: auto;
   background: transparent;
   border: none;
+  margin: 5px 0;
+}
+
+.closeButton button:hover,
+.closeButton button:active {
+  color: #b32b2b;
 }
 
 .errorMesage {
@@ -466,10 +451,16 @@ form {
   overflow: auto;
 }
 
+.errorMessage p:first-child {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
 footer {
   padding: 10px 0;
   background: #000;
   margin-top: 50px;
+  font-size: 0.8rem;
 }
 
 footer p {
@@ -497,6 +488,7 @@ h1 {
   height: 200px;
   margin-right: 5px;
 }
+
 .container {
   display: flex;
   align-items: flex-end;
@@ -508,11 +500,13 @@ h1 {
   border-radius: 15%;
   align-self: center;
 }
+
 .container .bar:nth-child(1) {
   background: #f40058;
   animation: bar1 2s linear;
   height: 100px;
 }
+
 @keyframes bar1 {
   0% {
       height: 0px;
@@ -521,11 +515,13 @@ h1 {
       height: 100px;
   }
 }
+
 .container .bar:nth-child(2) {
   background: #efa500;
   animation: bar2 2s linear;
   height: 65px;
 }
+
 @keyframes bar2 {
   0% {
       height: 0px;
@@ -534,11 +530,13 @@ h1 {
       height: 65px;
   }
 }
+
 .container .bar:nth-child(3) {
   background: #41b853;
   animation: bar3 2s linear;
   height: 90px;
 }
+
 @keyframes bar3 {
   0% {
       height: 0px;
@@ -547,12 +545,14 @@ h1 {
       height: 90px;
   }
 }
+
 .container .bar:nth-child(4) {
   background: #43bee5;
   animation: bar4 2s linear;
   height: 75px;
   margin-right: 0px;
 }
+
 @keyframes bar4 {
   0% {
       height: 0px;
@@ -562,7 +562,7 @@ h1 {
   }
 }
 
-.InstructionsWrapper {
+.instructionsWrapper {
   max-width: 700px;
   text-align: center;
   margin: 0 auto;
@@ -573,7 +573,6 @@ h1 {
 .directions {
   display: flex;
   justify-content: space-evenly;
-
 }
 
 .input-label {
@@ -581,6 +580,7 @@ h1 {
   list-style: none;
   font-size: 1.1rem;
   align-self: center;
+  text-align: start;
 }
 
 input[type="text"] {
@@ -593,7 +593,7 @@ input[type="text"] {
   border: none;
 }
 
-li {
+ul li {
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -614,9 +614,15 @@ li button:focus {
   background: #f40000;
 }
 
-.homeForm {
+ol, .homeForm {
   display: flex;
   flex-direction: column;
+}
+
+ol {
+  color: #fff;
+  margin-top: 15px;
+  list-style-position: inside;
 }
 
 button[type="submit"] {
@@ -640,10 +646,6 @@ button:hover, button[type="submit"]:hover, button:focus, button[type="submit"]:f
   background: #FF4287;
 }
 
-.startPollButton {
-  /* background: #41b853; */
-}
-
 .questionPreview p:first-child, .poll p  {
   font-size: 1.1rem;
   margin-bottom: 20px;
@@ -659,28 +661,23 @@ button:hover, button[type="submit"]:hover, button:focus, button[type="submit"]:f
 
 h2 {
   padding: 15px 0;
-  color: #fff;
 }
 
 h3 {
   font-size: 2rem;
+}
+
+h2, h3, .vote label, .poll label {
   color: white;
+}
+
+.vote a {
+  margin: 0 auto;
+  max-width: 200px;
 }
 
 .poll p {
   margin-top: 20px;
-}
-
-.questionBanner {
-  background: #3c4168;
-}
-
-.questionBanner h2 {
-  color: #fff;
-}
-
-.vote label, .poll label {
-  color: white;
 }
 
 .urlDisplay {
@@ -688,15 +685,154 @@ h3 {
   padding: 10px;
   border-radius: 5px;
   border: none;
+  color: #6d6a6a;
 }
 
 /* Result Styles */
 
-h4 {
+.result h3, h4 {
+  color: #919aca
+}
+
+.result h3 {
+  font-size: 1.8rem;
+}
+
+.result p {
   color: #fff;
 }
 
+/* Media Queries */
 
+@media (max-width: 768px) {
+
+  input[type=text] {
+    width: 70%;
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  h1 {
+    font-size: calc(3rem + 0.5vw);
+  }
+
+  .container {
+    width: 80px;
+    height: 80px;
+  }
+    
+  .container .bar:nth-child(1) {
+    height: 70px;
+  }
+
+  @keyframes bar1 {
+    100% {
+        height: 70px;
+    }
+  }
+
+  .container .bar:nth-child(2) {
+    height: 35px;
+  }
+
+  @keyframes bar2 {
+    100% {
+        height: 35px;
+    }
+  }
+
+  .container .bar:nth-child(3) {
+    height: 60px;
+  }
+
+  @keyframes bar3 {
+    100% {
+        height: 60px;
+    }
+  }
+
+  .container .bar:nth-child(4) {
+    height: 45px;
+  }
+
+  @keyframes bar4 {
+    100% {
+        height: 45px;
+    }
+  }
+
+}
+
+@media (max-width: 400px) {
+  .urlDisplay {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 355px) {
+
+  h1 {
+    font-size: calc(2.5rem + 0.5vw);
+  }
+
+  .container {
+    width: 60px;
+    height: 60px;
+  }
+    
+  .container .bar:nth-child(1) {
+    height: 50px;
+  }
+
+  @keyframes bar1 {
+    100% {
+        height: 50px;
+    }
+  }
+
+  .container .bar:nth-child(2) {
+    height: 25px;
+  }
+
+  @keyframes bar2 {
+    100% {
+        height: 25px;
+    }
+  }
+
+  .container .bar:nth-child(3) {
+    height: 45px;
+  }
+
+  @keyframes bar3 {
+    100% {
+        height: 45px;
+    }
+  }
+
+  .container .bar:nth-child(4) {
+    height: 40px;
+  }
+
+  @keyframes bar4 {
+    100% {
+        height: 40px;
+    }
+  }
+
+  input[type=text] {
+    width: 100%;
+  }
+
+  .startOverButton, .startPollButton {
+    min-width: 146px;
+    margin: 0 3px;
+    margin-top: 30px;
+  }
+  
+}
 
 
 

@@ -7,7 +7,7 @@ const Result = (props) => {
       <h3>Result</h3>
       { result ? Object.keys(result).map(function(item, i) {
         return(
-          <p key={i}>{item}: {result[item]}</p>
+          <p key={i}>{item}: {result[item]} </p>
         )
         }) : null
       }

@@ -20,8 +20,8 @@ const VotingForm = (props) => {
 
                         <div  key={i}className="form__group">
                             <div className="form__radio-group">
-                                <input type="radio" name="size" id="small" className="form__radio-input"/>
-                                <label className="form__label-radio" for="small" className="form__radio-label">
+                                <input type="radio" name="size" id="small" className="form__radio-input" value={object}/>
+                                <label className="form__label-radio" htmlFor="small" className="form__radio-label">
                                     <span className="form__radio-button"></span> {object}
                                 </label>
                             </div>
@@ -36,7 +36,7 @@ const VotingForm = (props) => {
                 </Link>
                 :
                 <Link to={`${pollID}`} onClick={handleClick}>
-                    <button >Vote</button>
+                    <button>Vote</button>
                 </Link>
             )}
 

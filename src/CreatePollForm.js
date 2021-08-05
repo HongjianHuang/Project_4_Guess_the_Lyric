@@ -5,11 +5,14 @@ const CreatePollForm = (props) =>
 
     return(
         <div>
-            <p className="InstructionsWrapper">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Mollitia libero expedita tenetur commodi voluptates repellat
-                facilis provident odio ea necessitatibus!
-            </p>
+            <div className="instructionsWrapper">
+                <p>A fast and simple way to create polls and get answers.</p>
+                <ol>
+                    <li>Type your poll question</li>
+                    <li>Determine the options to vote on</li>
+                    <li> Share URL link with your friends and family</li>
+                </ol>
+            </div>
             <form action="submit" onSubmit={handleQuestionSubmit}>
                 <div className="homeForm">
                     <label htmlFor="userquestionInput"></label>

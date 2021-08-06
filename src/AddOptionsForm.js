@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
+// Form that allows users to customize their poll options
 const AddOptionsForm = (props) => {
 
     const { handleAnswerSubmit, handleAnswerChange, answerInput, handleStartOver, pollID } = props;

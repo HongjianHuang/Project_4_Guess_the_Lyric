@@ -3,7 +3,7 @@ import firebase from "./firebase";
 import Modal from "./Modal";
 import CreatePollForm from "./CreatePollForm";
 import AddOptionsForm from "./AddOptionsForm";
-import AnswerOption from "./AnswerOptions";
+import PollPreview from "./PollPreview";
 import Header from "./Header"
 
 const Home = () => {
@@ -99,8 +99,9 @@ const Home = () => {
     <div className="wrapper" onClick={clickOffToCloseModal}>
       <Header />
       <main>
-        <AnswerOption poll={poll} questionShow={questionShow} handleRemoveClick={handleRemoveClick} completeQuestion={completeQuestion}/>
+        <PollPreview poll={poll} questionShow={questionShow} handleRemoveClick={handleRemoveClick} completeQuestion={completeQuestion}/>
 
+        {/* Switch between different forms based on the state of buttonShow */}
         { buttonShow ? 
           <CreatePollForm handleQuestionSubmit={handleQuestionSubmit} handleQuestionChange={handleQuestionChange} questionInput={questionInput} /> 
           :

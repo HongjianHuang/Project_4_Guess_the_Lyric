@@ -2,10 +2,11 @@ import React from 'react';
 import "./FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const AnswerOption = (props) => {
+const PollPreview = (props) => {
     
     const {questionShow, handleRemoveClick, completeQuestion, poll} = props;
 
+    
     return(
         <React.Fragment>
         {
@@ -31,4 +32,4 @@ const AnswerOption = (props) => {
     )
 }
 
-export default AnswerOption;
+export default PollPreview;

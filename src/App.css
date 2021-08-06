@@ -323,7 +323,7 @@ form {
     border-radius: 5px;
   } 
 
-  .importantButton:hover{
+  .importantButton:hover, .importantButton:focus{
     color: white;
   }
 
@@ -675,6 +675,14 @@ input[type=radio] {
 .result p {
   color: #fff;
 }
+
+.result {
+  border: 2px solid white;
+  max-width: 550px;
+  margin: 0 auto;
+  border-radius: 30px;
+  background: #ffffff0a;
+  }
 
 /* Media Queries */
 

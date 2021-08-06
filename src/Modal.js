@@ -5,6 +5,7 @@ const Modal = (props) => {
 
     const { active, setActive } = props
 
+    // Modal component that informs users of an invalid input
     return(
         <div className={active ? null : "hide"}>
             <div className="modalBackground">
@@ -23,7 +24,5 @@ const Modal = (props) => {
         </div>
     )
 }
-
-
 
 export default Modal;

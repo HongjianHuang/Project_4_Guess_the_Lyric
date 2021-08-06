@@ -1,6 +1,6 @@
 const CreatePollForm = (props) => 
 {
-
+    // Component that allows users to create a poll based on their input
     const { handleQuestionSubmit, handleQuestionChange, questionInput } = props;
 
     return(
@@ -10,7 +10,7 @@ const CreatePollForm = (props) =>
                 <ol>
                     <li>Type your poll question</li>
                     <li>Determine the options to vote on</li>
-                    <li> Share URL link with your friends and family</li>
+                    <li>Share URL link with your friends and family</li>
                 </ol>
             </div>
             <form action="submit" onSubmit={handleQuestionSubmit}>

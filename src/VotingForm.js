@@ -6,18 +6,11 @@ const VotingForm = (props) => {
 
     return(
         <form className="vote" onChange={onChangeValue}>
-
+            {/* Will show the options added by user as radio buttons. 
+            If no options are present page will render as empty */}
             {objectArray[1] ?
                 Object.keys(objectArray[1]).map(function (object, i) {
                     return (
-                        // <div className="radioContainer"key={i}>
-                        //     <div className="radioWrapper"></div>
-                        //     <input type="radio" className="radioInput"value={object} name="vote" />
-                        //     <label className="radioLabel">
-                        //         <span className="spanRadioButton">{object}</span>
-                        //     </label>
-                        // </div>
-
                         <div key={i}>
                             <div class="radioContainer">
                                 <label htmlFor="small">
@@ -30,6 +23,7 @@ const VotingForm = (props) => {
                 })
                 : null}
 
+                {/* Shows the result after vote button has been clicked, if there is no value chosen when vote button is clicked page will stay the same */}
             {showResult ? null : ((vote !== "") ?
                 <Link to={`${pollID}/result`} onClick={handleClick}>
                     <button className="importantButton">Vote</button>
@@ -39,12 +33,8 @@ const VotingForm = (props) => {
                     <button>Vote</button>
                 </Link>
             )}
-
         </form>
     )
-
-
-
 }
 
 export default VotingForm;

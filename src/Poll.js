@@ -48,6 +48,7 @@ const Poll = (props) => {
     }
     dbRef.set(pollObjectRef.value);
   };
+  // Connects to firebase and updates the object and poll array every time the value of firebase changes
   useEffect(() => {
     const dbRef = firebase.database().ref();
     dbRef.on("value", (response) => {
@@ -63,6 +64,7 @@ const Poll = (props) => {
         }
       }
     });
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Function to close modal when user clicks outside modal
@@ -90,9 +92,11 @@ const Poll = (props) => {
                 : `${window.location.href}`
             }
           />
+          {/* Shows user that url has been copied */}
           {copied ? <button className="copied" onClick={handleCopyURL}>Copied!</button>
           : <button className="hoverLightBlue" onClick={handleCopyURL}>Copy URL</button>
           }
+          {/* If pollObject.value is undefined the page will not show results */}
           {pollObject.value ? (
             <Route
               path="/:pollID/result"
